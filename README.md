@@ -13,3 +13,7 @@ cd asai_awp_test_assignment
 docker compose up
 ```
 Перед `docker-compose up` убедитесь, что запущен Docker Engine. Затем http://127.0.0.1:8069
+
+Что сделано (далее `~`=`repo dir`)
+- Модели списка задач (`awp.tasks`) и документов к ним (`awp.docs`)
+- 
