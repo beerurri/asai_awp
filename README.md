@@ -10,7 +10,7 @@
 ```bash
 git clone https://github.com/beerurri/asai_awp_test_assignment
 cd asai_awp_test_assignment
-docker compose up
+docker-compose up
 ```
 Перед `docker-compose up` убедитесь, что запущен Docker Engine. Затем http://127.0.0.1:8069
 
