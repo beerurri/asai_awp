@@ -8,7 +8,7 @@
 ## Быстрый старт (Docker Compose)
 
 ```bash
-git clone [⟨https://github.com/org/repo.git⟩](https://github.com/beerurri/asai_awp_test_assignment)
+git clone https://github.com/beerurri/asai_awp_test_assignment
 cd asai_awp_test_assignment
 docker compose up
 ```
