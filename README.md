@@ -2,5 +2,14 @@
 
 ## Быстрые ссылки
 
-- 🔗 Репозиторий: **https://github.com/beerurri/asai_awp_test_assignment**  
-- 🎥 Демо-видео: **[⟨ссылка⟩](https://youtu.be/ssGE4TmcM98)**
+- 🔗 Этот епозиторий: **[https://github.com/beerurri/asai_awp_test_assignment](https://github.com/beerurri/asai_awp_test_assignment)**  
+- 🎥 Демо-видео: **[https://youtu.be/ssGE4TmcM98](https://youtu.be/ssGE4TmcM98)**
+
+## Быстрый старт (Docker Compose)
+
+```bash
+git clone [⟨https://github.com/org/repo.git⟩](https://github.com/beerurri/asai_awp_test_assignment)
+cd asai_awp_test_assignment
+docker compose up
+```
+Перед `docker-compose up` убедитесь, что запущен Docker Engine. Затем http://127.0.0.1:8069
