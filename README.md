@@ -26,7 +26,7 @@ docker compose up
   - `group_awp_admin` -- группа админа/ов
   - ... и добавлены правила доступа к задачам `awp.tasks` и документам `awp.docs`
 - Группам прописаны права CRUD (`~/security/ir.model.access.csv`)
-- Реализован динамический пользовательский интерфейс с помощью [Odoo QWeb Templates](https://www.odoo.com/documentation/18.0/developer/reference/frontend/qweb.html) и [Bootstrap v5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) в виде списка задач. У каждой задачи есть превью -- если хотя бы один документ к данной задаче прописан в БД (в дальнейшем, при загрузке документов) как "использовать для превью" (`~/models/asai_awp.py#AsaiAWPDocs.preview` = `fields.Boolean`)
+- Реализован динамический пользовательский интерфейс с помощью [Odoo QWeb Templates](https://www.odoo.com/documentation/18.0/developer/reference/frontend/qweb.html) и [Bootstrap v5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) в виде списка задач. У каждой задачи есть превью -- если хотя бы один документ к данной задаче помечен в БД (в дальнейшем, при загрузке документов) как "использовать для превью" (`~/models/asai_awp.py#AsaiAWPDocs.preview` = `fields.Boolean`)
   - При нажатии на кнопку "Файлы" открывается модальное окно с файлами и их превью, если допустимо (демо-фильтр по расширению `.png`).
 - Реализованы контроллеры (бэкенд) (`~/controllers/awp_controllers.py`) для обработки события нажатия на кнопки:
   - "Взять в работу" -- в БД фиксируется время,
