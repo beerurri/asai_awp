@@ -26,6 +26,6 @@ docker compose up
   - `group_awp_admin` -- группа админа/ов
   - ... и добавлены правила доступа к задачам `awp.tasks` и документам `awp.docs`
 - Группам прописаны права CRUD (`~/security/ir.model.access.csv`)
-- 
+- Реализован пользовательский интерфейс с помощью [Odoo QWeb Templates](https://www.odoo.com/documentation/18.0/developer/reference/frontend/qweb.html) и [Bootstrap v5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 Благодаря такой архитектуре прав доступа Odoo автоматически 
