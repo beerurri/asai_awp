@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Демо-документы к детали PART_ID-001 (мои собственные чертежи) -->
+    <record id="doc_demo1" model="awp.docs">
+        <field name="part_id">PART_ID-001</field>
+        <field name="description">Сборочный чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/ass-draw-obj-1.png"/>
+        <field name="filename">ass-draw-obj-1.png</field>
+        <field name="preview" eval="True"/>
+    </record>
+    <record id="doc_demo2" model="awp.docs">
+        <field name="part_id">PART_ID-001</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/body-draw-1.png"/>
+        <field name="filename">body-draw-1.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo3" model="awp.docs">
+        <field name="part_id">PART_ID-001</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/body-draw.pdf"/>
+        <field name="filename">body-draw.pdf</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo4" model="awp.docs">
+        <field name="part_id">PART_ID-001</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/lens-4-draw-1.png"/>
+        <field name="filename">lens-4-draw-1.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo5" model="awp.docs">
+        <field name="part_id">PART_ID-001</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/lens-4-draw.pdf"/>
+        <field name="filename">lens-4-draw.pdf</field>
+        <field name="preview" eval="False"/>
+    </record>
+
+    <!-- Демо-документы к детали PART_ID-002 (мои собственные чертежи) -->
+    <record id="doc_demo6" model="awp.docs">
+        <field name="part_id">PART_ID-002</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/prism-ass-draw-1.png"/>
+        <field name="filename">prism-ass-draw-1.png</field>
+        <field name="preview" eval="True"/>
+    </record>
+    <record id="doc_demo7" model="awp.docs">
+        <field name="part_id">PART_ID-002</field>
+        <field name="description">Чертёж</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/prism-ass-draw-2.png"/>
+        <field name="filename">prism-ass-draw-2.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo8" model="awp.docs">
+        <field name="part_id">PART_ID-002</field>
+        <field name="description">Спецификация</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/prism-ass-spec-1.png"/>
+        <field name="filename">prism-ass-spec-1.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+
+    <!-- Демо-документы к детали PART_ID-003 (мои собственные чертежи) -->
+    <record id="doc_demo9" model="awp.docs">
+        <field name="part_id">PART_ID-003</field>
+        <field name="description">Оптическая схема</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/optical-scheme-draw-1.png"/>
+        <field name="filename">optical-scheme-draw-1.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo10" model="awp.docs">
+        <field name="part_id">PART_ID-003</field>
+        <field name="description">Оптическая схема</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/optical-scheme-draw-2.png"/>
+        <field name="filename">optical-scheme-draw-2.png</field>
+        <field name="preview" eval="False"/>
+    </record>
+    <record id="doc_demo11" model="awp.docs">
+        <field name="part_id">PART_ID-003</field>
+        <field name="description">Оптическая схема</field>
+        <field name="file" type="base64" file="asai_awp/demo/demo_doc_files/optical-scheme-draw.pdf"/>
+        <field name="filename">optical-scheme-draw.pdf</field>
+        <field name="preview" eval="False"/>
+    </record>
+</odoo>

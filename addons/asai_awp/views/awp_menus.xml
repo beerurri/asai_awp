@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="action_awp_client" model="ir.actions.client">
+        <field name="name">AWP Tasks</field>
+        <field name="tag">awp.tasks.action</field>
+    </record>
+
+    <menuitem id="menu_awp_custom"
+            name="AWP Tasks"
+            action="action_awp_client"
+            sequence="1"/>
+</odoo>

@@ -1,0 +1,40 @@
+.task-list-container {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+.task-list-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.task-list-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE и Edge */
+}
+
+.task-img-wrapper {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: stretch;
+    padding: 0.25rem;
+}
+
+.task-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-top-left-radius: .25rem; */
+    border-bottom-left-radius: .25rem;
+}
+
+.order-status-label {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.defect-textarea {
+    height: 30vh;
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Демо-задача для детали PART_ID-001 -->
+    <record id="task_demo_1" model="awp.tasks">
+        <field name="task_id">TASK_ID-001</field>
+        <field name="part_id">PART_ID-001</field>
+        <field name="order_number">1</field>
+        <field name="order_description">First demo order for part PART_ID-001</field>
+        <field name="order_status">draft</field>
+        <field name="task_description">Assemble 10 pieces of PART_ID-001</field>
+        <field name="parts_count">10</field>
+        <field name="hidden" eval="False"/>
+        <!-- Доступна только user1 и user2, наследуется манагером и админом -->
+        <field name="assigned_user_ids" eval="[
+            (4, ref('asai_awp.user1')),
+            (4, ref('asai_awp.user2'))
+        ]"/>
+    </record>
+    <record id="task_demo_2" model="awp.tasks">
+        <field name="task_id">TASK_ID-002</field>
+        <field name="part_id">PART_ID-001</field>
+        <field name="order_number">2</field>
+        <field name="order_description">Second demo order for part PART_ID-001</field>
+        <field name="order_status">in_progress</field>
+        <field name="task_description">Assemble 5 pieces of PART_ID-001</field>
+        <field name="parts_count">5</field>
+        <field name="hidden" eval="False"/>
+        <!-- Доступна только user1, наследуется манагером и админом -->
+        <field name="assigned_user_ids" eval="[
+            (4, ref('asai_awp.user1'))
+        ]"/>
+        <!-- Т.к. уже в работе (демо), пишем, кем именно задача взята в рабоу - user1 -->
+        <field name="taken_by_ids" eval="[
+            (4, ref('asai_awp.user1'))
+        ]"/>
+    </record>
+
+    <!-- Демо-задача для детали PART_ID-002 -->
+    <record id="task_demo_3" model="awp.tasks">
+        <field name="task_id">TASK_ID-003</field>
+        <field name="part_id">PART_ID-002</field>
+        <field name="order_number">3</field>
+        <field name="order_description">Demo order for part PART_ID-002</field>
+        <field name="order_status">done</field>
+        <field name="task_description">Assemble 20 pieces of PART_ID-002</field>
+        <field name="parts_count">20</field>
+        <field name="hidden" eval="False"/>
+        <!-- Доступна только user2, наследуется манагером и админом -->
+        <field name="assigned_user_ids" eval="[
+            (4, ref('asai_awp.user2'))
+        ]"/>
+    </record>
+
+    <!-- Демо-задача для детали PART_ID-003 -->
+    <record id="task_demo_4" model="awp.tasks">
+        <field name="task_id">TASK_ID-004</field>
+        <field name="part_id">PART_ID-003</field>
+        <field name="order_number">4</field>
+        <field name="order_description">Demo order for part PART_ID-003</field>
+        <field name="order_status">draft</field>
+        <field name="task_description">Just check the docs of PART_ID-002</field>
+        <field name="parts_count">0</field>
+        <field name="hidden" eval="False"/>
+        <!-- Доступна только манагеру, наследуется админом -->
+        <field name="assigned_user_ids" eval="[
+            (4, ref('asai_awp.manager'))
+        ]"/>
+    </record>
+
+    <!-- Демо-задача для детали PART_ID-003 -->
+    <record id="task_demo_5" model="awp.tasks">
+        <field name="task_id">TASK_ID-005</field>
+        <field name="part_id">PART_ID-003</field>
+        <field name="order_number">5</field>
+        <field name="order_description">Demo order for part PART_ID-003</field>
+        <field name="order_status">defect</field>
+        <field name="task_description">Just check the docs of PART_ID-002</field>
+        <field name="parts_count">0</field>
+        <field name="hidden" eval="False"/>
+        <!-- Доступна только и только админу -->
+        <field name="assigned_user_ids" eval="[
+            (4, ref('asai_awp.user_admin'))
+        ]"/>
+    </record>
+</odoo>

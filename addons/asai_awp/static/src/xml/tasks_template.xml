@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <!-- Шаблон страницы со списком задач -->
+    <t t-name="asai_awp.tasks_list_client_action">
+        <div class="container mt-0 task-list-container">
+            <!-- qweb-цикл по списку задач -->
+            <t t-foreach="state.tasks" t-as="task" t-key="task.task_id">
+                <!-- проверка, что задача не скрыта (только для UI) -->
+                <t t-if="!task.hidden">
+                    <div class="card mb-3 shadow-sm">
+                        <!-- STATUS LABELS -->
+                        <!-- DRAFT (Готово к работе) -->
+                        <t t-if="task.order_status_key == 'draft'">
+                            <span class="form-text d-block px-2 pb-1 m-0 fs-6 text-light bg-info fw-bold order-status-label">
+                                <t t-esc="task.order_status_label"/>
+                            </span>
+                        </t>
+                        <!-- IN PROGRESS (В работе) -->
+                        <t t-if="task.order_status_key == 'in_progress'">
+                            <span class="form-text d-block px-2 pb-1 m-0 fs-6 text-light bg-warning fw-bold order-status-label">
+                                <t t-esc="task.order_status_label"/><t t-if="task.taken_on"> <t t-esc="task.taken_on"/></t>
+                            </span>
+                        </t>
+                        <!-- DONE (Готово) -->
+                        <t t-if="task.order_status_key == 'done'">
+                            <span class="form-text d-block px-2 pb-1 m-0 fs-6 text-light bg-success fw-bold order-status-label">
+                                <t t-esc="task.order_status_label"/><t t-if="task.done_on"> <t t-esc="task.done_on"/></t>
+                            </span>
+                        </t>
+                        <!-- DEFECT (Брак) -->
+                        <t t-if="task.order_status_key == 'defect'">
+                            <span class="form-text d-block px-2 pb-1 m-0 fs-6 text-light bg-danger fw-bold order-status-label">
+                                <t t-esc="task.order_status_label"/>
+                            </span>
+                        </t>
+                        <div class="d-flex">
+                            <!-- Превью -->
+                            <div class="task-img-wrapper">
+                                <t t-if="task.preview_file">
+                                    <img t-att-src="task.preview_file"
+                                        alt="preview"
+                                        class="task-img"/>
+                                </t>
+                            </div>
+                            <!-- Если статус DRAFT (Готово к работе) -->
+                            <t t-if="task.order_status_key == 'draft'">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="card-title">Заказ <t t-esc="task.task_id"/></h5>
+                                            <p><t t-esc="task.order_description"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <div>
+                                            <button class="btn btn-info btn-sm text-white mx-2" t-on-click="() => this.onDetails(task)">Подробнее</button>
+                                            <button class="btn btn-secondary btn-sm mx-2" data-bs-toggle="modal" t-on-click="() => this.onFiles(task)" data-bs-target="#filesModal">Файлы</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success btn-sm" t-on-click="() => this.onTake(task)">Взять в работу</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <!-- Если статус IN PROGRESS (В работе) -->
+                            <t t-if="task.order_status_key == 'in_progress'">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="card-title">Заказ <t t-esc="task.task_id"/></h5>
+                                            <p><t t-esc="task.order_description"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <div>
+                                            <button class="btn btn-info btn-sm text-white mx-2" t-on-click="() => this.onDetails(task)">Подробнее</button>
+                                            <button class="btn btn-secondary btn-sm mx-2" data-bs-toggle="modal" t-on-click="() => this.onFiles(task)" data-bs-target="#filesModal">Файлы</button>
+                                        </div>
+                                        <!-- Отображаем нужные кнопки в зависимости от того,
+                                                    взята ли задача в работу текущим пользователем... -->
+                                        <t t-if="task.is_to_take">
+                                            <div>
+                                                <button class="btn btn-success btn-sm" t-on-click="() => this.onTake(task)">Взять в работу</button>
+                                            </div>
+                                        </t>
+                                        <!-- ...или нет -->
+                                        <t t-else="">
+                                            <div>
+                                                <button class="btn btn-danger btn-sm me-2" t-on-click="() => this.openDefectModal(task)">Брак</button>
+                                                <button class="btn btn-success btn-sm ms-2" t-on-click="() => this.onDone(task)">Готово</button>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                            <!-- Если статус DONE (Готово) -->
+                            <t t-if="task.order_status_key == 'done'">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="card-title">Заказ <t t-esc="task.task_id"/></h5>
+                                            <p><t t-esc="task.order_description"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <div>
+                                            <button class="btn btn-info btn-sm text-white mx-2" t-on-click="() => this.onDetails(task)">Подробнее</button>
+                                            <button class="btn btn-secondary btn-sm mx-2" data-bs-toggle="modal" t-on-click="() => this.onFiles(task)" data-bs-target="#filesModal">Файлы</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-warning btn-sm ms-2" t-on-click="() => this.onHide(task)">Скрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <!-- Если статус DEFECT (Брак) -->
+                            <t t-if="task.order_status_key == 'defect'">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="card-title">Заказ <t t-esc="task.task_id"/></h5>
+                                            <p><t t-esc="task.order_description"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <div>
+                                            <button class="btn btn-info btn-sm text-white mx-2" t-on-click="() => this.onDetails(task)">Подробнее</button>
+                                            <button class="btn btn-secondary btn-sm mx-2" data-bs-toggle="modal" t-on-click="() => this.onFiles(task)" data-bs-target="#filesModal">Файлы</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-warning btn-sm ms-2" t-on-click="() => this.onHide(task)">Скрыть</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+        <!-- Модалка для документов/файлов (динамическое содержимое) -->
+        <div class="modal fade" id="filesModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Файлы по заказу</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="filesModalBody">
+                    <!-- Вот здесь располагается динамческое содержимое -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Модалка ввода описания причины брака -->
+        <div class="modal fade" id="defectModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="defectModalOrderId">
+                        <!-- Здесь располагается ИД заказа -->
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="defectModalText" class="form-control defect-textarea"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" t-on-click="() => this.sendDefectReason()">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Модалка предупреждения об ошибке отправки причины брака.
+                    Можно также исопльзовать и для других уведомлений -->
+        <div class="modal fade" id="warningErrorModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="warningErrorModalTitle">
+                    <!-- Здесь заголовок уведомления -->
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="warningErrorModalBody">
+                <!-- Здесь содержимое уведомления -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

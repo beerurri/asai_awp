@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Группа рядовых пользователей -->
+    <record id="group_awp_user" model="res.groups">
+        <field name="name">AWP User</field>
+    </record>
+
+    <!-- Группа менеджеров/технологов на производстве -->
+    <record id="group_awp_manager" model="res.groups">
+        <field name="name">AWP Manager</field>
+    </record>
+
+    <!-- Админ (топ-менеджер/директор и т.п.) -->
+    <record id="group_awp_admin" model="res.groups">
+        <field name="name">AWP Admin</field>
+        <field name="implied_ids" eval="[(4, ref('asai_awp.group_awp_user'))]"/>
+    </record>
+
+    <!-- Правило доступа админов к задачам -->
+    <record id="awp_tasks_admin_rule" model="ir.rule">
+        <field name="name">Admin tasks</field>
+        <field name="model_id" ref="model_awp_tasks"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_admin'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- Правило доступа рядовых пользователей к задачам -->
+    <record id="awp_task_user_rule" model="ir.rule">
+        <field name="name">User tasks</field>
+        <field name="model_id" ref="model_awp_tasks"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_user'))]"/>
+        <field name="domain_force">[('assigned_user_ids','in',[user.id])]</field>
+    </record>
+
+    <!-- Правило доступа менеджеров к задачам -->
+    <record id="awp_task_manager_rule" model="ir.rule">
+        <field name="name">Manager tasks</field>
+        <field name="model_id" ref="model_awp_tasks"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- Правило доступа админов к документам -->
+    <record id="awp_docs_admin_rule" model="ir.rule">
+        <field name="name">Admin docs</field>
+        <field name="model_id" ref="model_awp_docs"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_admin'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+
+    <!-- Правило доступа рядовых пользователей к задачам -->
+    <record id="awp_docs_user_rule" model="ir.rule">
+        <field name="name">User tasks</field>
+        <field name="model_id" ref="model_awp_docs"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_user'))]"/>
+        <field name="domain_force">[('task_ids.assigned_user_ids', 'in', [user.id])]</field>
+    </record>
+
+    <!-- Правило доступа менеджеров к задачам -->
+    <record id="awp_docs_manager_rule" model="ir.rule">
+        <field name="name">Manager docs</field>
+        <field name="model_id" ref="model_awp_docs"/>
+        <field name="groups" eval="[(4, ref('asai_awp.group_awp_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+    </record>
+</odoo>

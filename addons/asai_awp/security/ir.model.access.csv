@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_awp_tasks_user,access.awp.tasks.user,model_awp_tasks,asai_awp.group_awp_user,1,1,1,0
+access_awp_tasks_manager,access.awp.tasks.manager,model_awp_tasks,asai_awp.group_awp_manager,1,1,1,1
+access_awp_tasks_admin,access.awp.tasks.admin,model_awp_tasks,asai_awp.group_awp_admin,1,1,1,1
+access_awp_docs_user,access.awp.docs.user,model_awp_docs,asai_awp.group_awp_user,1,0,0,0
+access_awp_docs_manager,access.awp.docs.manager,model_awp_docs,asai_awp.group_awp_manager,1,1,1,0
+access_awp_docs_admin,access.awp.docs.admin,model_awp_docs,asai_awp.group_awp_admin,1,1,1,1
