@@ -2,7 +2,7 @@
 
 ## Быстрые ссылки
 
-- 🔗 Данный репозиторий: **[https://github.com/beerurri/asai_awp_test_assignment](https://github.com/beerurri/asai_awp_test_assignment)**  
+- 🔗 Данный репозиторий: **[https://github.com/beerurri/asai_awp](https://github.com/beerurri/asai_awp)**  
 - 🎥 Демо-видео: **[https://youtu.be/ssGE4TmcM98](https://youtu.be/ssGE4TmcM98)**
 
 ## Что сделано (далее `~`=`repo dir`)
